@@ -3,7 +3,7 @@ from tqdm import tqdm
 from typing import List, Tuple
 from random import random
 
-def GetLatLon(searchtext: str) -> List[Tuple[float, float, str]]:
+def _get_latlon(searchtext: str) -> List[Tuple[float, float, str]]:
     headers = {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         # "Accept-Encoding": "gzip, deflate, br",
@@ -47,7 +47,7 @@ def GetLatLon(searchtext: str) -> List[Tuple[float, float, str]]:
         logging.error(f'Response: {response.status_code}. Content: {response.text}')
     return results
 
-def main(searches_filepath: str) -> List[Tuple[str, float, float, str]]:
+def GetLatLon(searches_filepath: str) -> List[Tuple[str, float, float, str]]:
     parentfolder = os.path.dirname(searches_filepath)
     filename, ext = os.path.splitext(os.path.basename(searches_filepath))
     export_filename = os.path.join(parentfolder, filename + '_processed' + ext)
@@ -58,7 +58,7 @@ def main(searches_filepath: str) -> List[Tuple[str, float, float, str]]:
     # searches_df.apply(lambda searchtext: results.extend(GetLatLon(searchtext)))
     for index, row in tqdm(searches_df.iterrows(), total=searches_df.shape[0]):
         if isinstance(row['searchtext'], str) and len(row['searchtext']) > 0:
-            results.extend(GetLatLon(row['searchtext']))
+            results.extend(_get_latlon(row['searchtext']))
         if index % 10.0 == 0:
             results_df = pd.DataFrame(results, columns=df_columns)
             results_df.to_csv(export_filename, index=False)
@@ -70,5 +70,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Call Open Stream Map API to retrieve lat, lon, address of a search query. Results will be exported to parent folder of the input file.')
     parser.add_argument('--searchtextsfile', metavar='', required=True, help='filepath containing a list of search queries; must contain a column called "searchtext".')
     args = parser.parse_args()
-    main(args.searchtextsfile)
+    GetLatLon(args.searchtextsfile)
     pass

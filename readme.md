@@ -28,12 +28,12 @@ Change  the current directory to the one containing the Web Utilities source fil
 (SRO-lightweight-env) D:\>cd D:\cmingyi\PycharmProjects\WebUtilities
 ```
 
-### get-supplier-desc.py
+### GetSupplierDesc.py
 
-Get help using the following command `python get-supplier-desc.py -help`
+Get help using the following command `python GetSupplierDesc.py -help`
 ```bash
-(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python get-supplier-desc.py -help
-usage: get-supplier-desc.py [-h] --supplierfile
+(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python GetSupplierDesc.py -help
+usage: GetSupplierDesc.py [-h] --supplierfile
 
 Scrape supplier descriptions from internet. Results will be exported to parent folder of the input file.
 
@@ -43,14 +43,14 @@ options:
 ```
 Start the get-supplier-desc function using `python get supplier-desc.py --supplierfile <your input file path>`
 ```bash
-(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python get-supplier-desc.py --supplierfile <your input file path>
+(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python GetSupplierDesc.py --supplierfile <your input file path>
 ```
 
-### retrieve-latlon.py
-Get help using the following command `python get-supplier-desc.py -help`
+### RetrieveLatLon.py
+Get help using the following command `python GetSupplierDesc.py -help`
 ```bash
-(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python retrieve-latlon.py -help
-usage: retrieve-latlon.py [-h] --searchtextsfile
+(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python RetrieveLatLon.py -help
+usage: RetrieveLatLon.py [-h] --searchtextsfile
 
 Call Open Stream Map API to retrieve lat, lon, address of a search query. Results will be exported to parent folder of
 the input file.
@@ -59,10 +59,10 @@ options:
   -h, --help          show this help message and exit
   --searchtextsfile   filepath containing a list of search queries; must contain a column called "searchtext".
 ```
-Start the retrieve-latlon function using `python retrieve-latlon.py --searchtextsfile <your input file path>`
+Start the retrieve-latlon function using `python RetrieveLatLon.py --searchtextsfile <your input file path>`
 ```bash
-(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python retrieve-latlon.py --searchtextsfile <your input file path>
+(SRO-lightweight-env) D:\cmingyi\PycharmProjects\WebUtilities>python RetrieveLatLon.py --searchtextsfile <your input file path>
 ```
 ### Automation Open Street Map.xlsm
 
-This macro-enabled Excel file serves the same functionality as retrieve-latlon.py
+This macro-enabled Excel file serves the same functionality as RetrieveLatLon.py

@@ -5,7 +5,7 @@ from random import random
 
 logging.getLogger().setLevel(logging.INFO)
 
-def get_supplier_desc(supplier: str) -> str:
+def _get_supplier_desc(supplier: str) -> str:
     # setting the right header values make search more human-like; helps prevent ip suspension from website
     headers = {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -50,7 +50,7 @@ def get_supplier_desc(supplier: str) -> str:
         
     return supplier_desc
 
-def main(supplier_filepath: str):
+def GetSupplierDesc(supplier_filepath: str):
     if not os.path.isfile(supplier_filepath):
         logging.warning(f'Filepath {supplier_filepath} does not exist.')
         return
@@ -60,7 +60,7 @@ def main(supplier_filepath: str):
     export_filename = os.path.join(parentfolder, filename + '_processed' + ext)
     company_names_df = pd.read_csv(supplier_filepath, header=0)
     for index, row in tqdm(company_names_df.iterrows(), total=company_names_df.shape[0]):
-        company_names_df.at[index,'desc'] = get_supplier_desc(row['name'])
+        company_names_df.at[index,'desc'] = _get_supplier_desc(row['name'])
 
         if index % 10.0 == 0:
             company_names_df.to_csv(export_filename, index=False)
@@ -70,5 +70,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Scrape supplier descriptions from internet. Results will be exported to parent folder of the input file.')
     parser.add_argument('--supplierfile', metavar='', required=True, help='filepath containing a list of supplier names; must contain a column called "name".')
     args = parser.parse_args()
-    main(supplier_filepath=args.supplierfile)
+    GetSupplierDesc(supplier_filepath=args.supplierfile)
     pass
