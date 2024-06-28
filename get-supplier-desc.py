@@ -71,5 +71,4 @@ if __name__ == '__main__':
     parser.add_argument('--supplierfile', metavar='', required=True, help='filepath containing a list of supplier names; must contain a column called "name".')
     args = parser.parse_args()
     main(supplier_filepath=args.supplierfile)
-    # main(supplier_filepath=r'D:\cmingyi\A2) SRO Work\Company Name Matching\20240606_to be deleted\companies_test_to be deleted.csv')
     pass

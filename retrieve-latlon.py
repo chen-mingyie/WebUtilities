@@ -71,5 +71,4 @@ if __name__ == '__main__':
     parser.add_argument('--searchtextsfile', metavar='', required=True, help='filepath containing a list of search queries; must contain a column called "searchtext".')
     args = parser.parse_args()
     main(args.searchtextsfile)
-    # main(r'D:\cmingyi\A2) SRO Work\Knowledge Graph\INGENIO_Automation Open Steet Map_2.csv')
     pass
